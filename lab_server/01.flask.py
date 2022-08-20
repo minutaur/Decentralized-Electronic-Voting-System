@@ -1,4 +1,5 @@
 from flask import Flask
+
 app = Flask(__name__)
 
 
@@ -6,8 +7,10 @@ app = Flask(__name__)
 def f1():
     return "시작페이지"
 
+
 @app.route("/abcd")
 def f2():
-    return"abcd"
+    return "abcd"
+
 
 app.run()

@@ -28,7 +28,6 @@ while True:
         }
 
         res = requests.post('http://127.0.0.1:5000/open', data=json.dumps(data), headers=headers)
-
         print(res.text)
 
 
@@ -46,8 +45,9 @@ while True:
         }
 
         res = requests.post('http://127.0.0.1:5000/vote', data=json.dumps(data), headers=headers)
-
         print(res.text)
+
+
 
     elif menu == '4':
         break

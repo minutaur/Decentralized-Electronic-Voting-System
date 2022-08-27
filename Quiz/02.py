@@ -1,94 +1,41 @@
-from flask import Flask, jsonify, request
+import requests
+import json
 
-app = Flask(__name__)
+while True:
+    print('1.블록 체인 조회')
+    print('2.투표 생성')
+    print('3.투표')
+    print('4.종료')
 
-chain = []
-cnt = 0
+    menu = input('=>')
 
-
-@app.route("/",methods = ['POST', 'GET'])  # 3
-def hello():
-    return '''<!DOCTYPE HTML><html>
-      <body>
-        <h1>1.블록 체인 조회</h1><br>
-        <h1>2.투표 생성</h1><br>
-        <h1>3.투표</h1><br>
-      </body>
-    </html>'''
+    if menu == '1':
+        res = requests.get('http://127.0.0.1:5000/list')
+        print(res.text)
 
 
-def result():
-    if request.method == 'POST':
-        request.form
-        return '''
-      <!doctype html>
-        <html>
-           <body>
+    elif menu == '2':
+        headers = {'Content-Type': 'application/json'}
 
-              <table border = 1>
-                 {% for key, value in result.items() %}
+        question = input('질문:')
+        option1 = input('선택지1')
+        option2 = input('선택지2')
+        option3 = input('선택지3')
 
-                    <tr>
-                       <th> {{ key }} </th>
-                       <td> {{ value }} </td>
-                    </tr>
-                 {% end-for %}
-              </table>
-
-           </body>
-        </html>
-'''
-
-if __name__ == '__main__':
-    app.run()
-
-
-
-@app.route('/list', methods=['GET'])
-def vote_list():
-    return jsonify(chain)
-
-
-@app.route('/open', methods=['POST'])
-def vote_open():
-    global cnt
-    try:
-        data = request.get_json()
-        block = {
-            'type': 'open',
-            'data': {
-                'id': str(cnt),
-                'question': data['question'],
-                'options': data['options']
-
-            }
+        data = {
+            'question': question,
+            'options': [option1, option2, option3]
         }
 
-        cnt += 1
-        chain.append(block)
-        return jsonify({'status': 'success'})
+        res = requests.post('http://127.0.0.1:5000/open', data=json.dumps(data), headers=headers)
 
-    except:
-        return jsonify({'status': 'failed'})
+        print(res.text)
 
 
-@app.route('/vote', methods=['POST'])
-def vote():
-    try:
-        data = request.get_json()
-        block = {
-            'type': 'vote',
-            'data': {
-                'id': data['id'],
-                'vote': data['vote']
-
-            }
-        }
-        chain.append(block)
-        return jsonify({'status': 'success'})
-
-    except:
-        return jsonify({'status': 'failed'})
 
 
-app.run()
+    elif menu == '3':
+        pass
+
+    elif menu == '4':
+        break

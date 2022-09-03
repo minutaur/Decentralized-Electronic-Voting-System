@@ -11,6 +11,7 @@ class GUI(QWidget):
         self.button2 = QPushButton('버튼2')
         self.button3 = QPushButton('버튼3')
 
+
         self.button1.clicked.connect(self.button1_click)
         self.button2.clicked.connect(self.button2_click)
         self.button3.clicked.connect(self.button3_click)

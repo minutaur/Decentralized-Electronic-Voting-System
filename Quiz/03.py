@@ -11,26 +11,29 @@ class Tab1(QWidget):
         self.menu_button = QPushButton('투표조회')
         self.layout_1.addWidget(self.menu_button)
         # 레이아웃2======================================================
-        self.layout_2 = QVBoxLayout()
-        self.text_lable = QLabel()
-
+        self.votelist = QGroupBox('투표목록')
+        self.layout_2 = QHBoxLayout()
         self.list = QListWidget()
-        self.list.addItem('0')
-
-        self.layout_2.addWidget(self.text_lable)
+        self.list.addItem('1')
+        self.list.addItem('2')
         self.layout_2.addWidget(self.list)
+
+        self.vote = QGroupBox('투표')
 
         # 레이아웃3======================================================
         self.layout_3 = QVBoxLayout()
 
         # =============================================================
         self.groupbox_1 = QGroupBox('메뉴')  # 메뉴
-        self.groupbox_2 = QGroupBox('투표목록')  # 투표목록
+        self.groupbox_2 = QGroupBox()  # 투표목록
         self.groupbox_3 = QGroupBox('투표결과')  # 투표결과
 
         self.groupbox_1.setLayout(self.layout_1)
         self.groupbox_2.setLayout(self.layout_2)
         self.groupbox_3.setLayout(self.layout_3)
+
+        self.layout_2.addWidget(self.votelist)
+        self.layout_2.addWidget(self.vote)
 
         self.main_layout.addWidget(self.groupbox_1)
         self.main_layout.addWidget(self.groupbox_2)

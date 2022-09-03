@@ -24,9 +24,9 @@ class Tab1(QWidget):
         self.layout_3 = QVBoxLayout()
 
         # =============================================================
-        self.groupbox_1 = QGroupBox()  # 메뉴
-        self.groupbox_2 = QGroupBox()  # 투표목록
-        self.groupbox_3 = QGroupBox()  # 투표결과
+        self.groupbox_1 = QGroupBox('메뉴')  # 메뉴
+        self.groupbox_2 = QGroupBox('투표목록')  # 투표목록
+        self.groupbox_3 = QGroupBox('투표결과')  # 투표결과
 
         self.groupbox_1.setLayout(self.layout_1)
         self.groupbox_2.setLayout(self.layout_2)

@@ -6,11 +6,11 @@ class Tab1(QWidget):
     def __init__(self):
         super().__init__()
         self.main_layout = QVBoxLayout()
-#레이아웃1======================================================
+        # 레이아웃1======================================================
         self.layout_1 = QVBoxLayout()
-        self.menu_button= QPushButton('투표조회')
+        self.menu_button = QPushButton('투표조회')
         self.layout_1.addWidget(self.menu_button)
-#레이아웃2======================================================
+        # 레이아웃2======================================================
         self.layout_2 = QVBoxLayout()
         self.text_lable = QLabel()
 
@@ -20,13 +20,13 @@ class Tab1(QWidget):
         self.layout_2.addWidget(self.text_lable)
         self.layout_2.addWidget(self.list)
 
-#레이아웃3======================================================
+        # 레이아웃3======================================================
         self.layout_3 = QVBoxLayout()
 
-#=============================================================
-        self.groupbox_1 = QGroupBox()#메뉴
-        self.groupbox_2 = QGroupBox()#투표목록
-        self.groupbox_3 = QGroupBox()#투표결과
+        # =============================================================
+        self.groupbox_1 = QGroupBox()  # 메뉴
+        self.groupbox_2 = QGroupBox()  # 투표목록
+        self.groupbox_3 = QGroupBox()  # 투표결과
 
         self.groupbox_1.setLayout(self.layout_1)
         self.groupbox_2.setLayout(self.layout_2)
@@ -38,6 +38,7 @@ class Tab1(QWidget):
         self.setLayout(self.main_layout)
 
 
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class Tab2(QWidget):
     def __init__(self):
         super().__init__()
@@ -76,25 +77,21 @@ class Tab2(QWidget):
 
         self.form_layout = QFormLayout()
         self.line_edit = QLineEdit()
-        self.button = QPushButton('버튼')
 
         self.form_layout.addRow('텍스트', self.line_edit)
-        self.form_layout.addRow('', self.button)
 
-    def button_click(self):
-        self.text_label.setText(self.line_edit.text())
-
-    def button1_click(self):
+    def button1_click(self):  # 게시
         pass
 
-    def button2_click(self):
+    def button2_click(self):  # 초기화
         pass
 
 
+# ================================================================
 class GUI(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('제목')
+        self.setWindowTitle('중앙전자투표시스템')
 
         self.tab1 = Tab1()
         self.tab2 = Tab2()

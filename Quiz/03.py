@@ -5,103 +5,98 @@ import sys
 class Tab1(QWidget):
     def __init__(self):
         super().__init__()
-        self.main_layout = QVBoxLayout()
-        # 레이아웃1======================================================
-        self.layout_1 = QVBoxLayout()
-        self.menu_button = QPushButton('투표조회')
-        self.layout_1.addWidget(self.menu_button)
-        # 레이아웃2======================================================
-        self.votelist = QGroupBox('투표목록')
-        self.layout_2 = QHBoxLayout()
-        self.list = QListWidget()
-        self.list.addItem('1')
-        self.list.addItem('2')
-        self.layout_2.addWidget(self.list)
 
-        self.vote = QGroupBox('투표')
+        #####################################################
+        self.menu_group_box = QGroupBox('메뉴')
 
-        # 레이아웃3======================================================
-        self.layout_3 = QVBoxLayout()
+        self.fetch_vote_button = QPushButton('투표 조회')
 
-        # =============================================================
-        self.groupbox_1 = QGroupBox('메뉴')  # 메뉴
-        self.groupbox_2 = QGroupBox()  # 투표목록
-        self.groupbox_3 = QGroupBox('투표결과')  # 투표결과
+        self.menu_hbox_layout = QHBoxLayout()
+        self.menu_hbox_layout.addWidget(self.fetch_vote_button)
 
-        self.groupbox_1.setLayout(self.layout_1)
-        self.groupbox_2.setLayout(self.layout_2)
-        self.groupbox_3.setLayout(self.layout_3)
+        self.menu_group_box.setLayout(self.menu_hbox_layout)
+        #####################################################
 
-        self.layout_2.addWidget(self.votelist)
-        self.layout_2.addWidget(self.vote)
+        #####################################################
+        self.vote_list_group_box = QGroupBox('투표 목록')
 
-        self.main_layout.addWidget(self.groupbox_1)
-        self.main_layout.addWidget(self.groupbox_2)
-        self.main_layout.addWidget(self.groupbox_3)
-        self.setLayout(self.main_layout)
+        self.vote_list = QListWidget()
+        self.vote_list.addItem('투표 1')
+        self.vote_list.addItem('투표 2')
+
+        self.vote_list_vbox_layout = QVBoxLayout()
+        self.vote_list_vbox_layout.addWidget(self.vote_list)
+
+        self.vote_list_group_box.setLayout(self.vote_list_vbox_layout)
+        #####################################################
+
+        #####################################################
+        self.vote_info_group_box = QGroupBox('투표 정보')
+
+        self.question_label = QLabel()
+        self.question_label.setText('투표 질문')
+
+        self.option1_button = QPushButton('선택지 1')
+        self.option2_button = QPushButton('선택지 2')
+        self.option3_button = QPushButton('선택지 3')
+
+        self.vote_info_vbox_layout = QVBoxLayout()
+        self.vote_info_vbox_layout.addWidget(self.question_label)
+        self.vote_info_vbox_layout.addWidget(self.option1_button)
+        self.vote_info_vbox_layout.addWidget(self.option2_button)
+        self.vote_info_vbox_layout.addWidget(self.option3_button)
+
+        self.vote_info_group_box.setLayout(self.vote_info_vbox_layout)
+        #####################################################
+
+        self.vote_layout = QGridLayout()
+        self.vote_layout.addWidget(self.menu_group_box, 0, 0, 1, 2)
+        self.vote_layout.addWidget(self.vote_list_group_box, 1, 0, 1, 1)
+        self.vote_layout.addWidget(self.vote_info_group_box, 1, 1, 1, 1)
+
+        self.setLayout(self.vote_layout)
 
 
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class Tab2(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('제목')
-
-        self.line_edit1 = QLineEdit()
-        self.line_edit2 = QLineEdit()
-        self.line_edit3 = QLineEdit()
-        self.line_edit4 = QLineEdit()
 
         self.form_layout = QFormLayout()
 
-        self.button1 = QPushButton('게시')
-        self.button2 = QPushButton('초기화')
-        self.hbox = QHBoxLayout()
-        self.hbox.addWidget(self.button1)
-        self.hbox.addWidget(self.button2)
+        self.question_line_edit = QLineEdit()
+        self.option1_line_edit = QLineEdit()
+        self.option2_line_edit = QLineEdit()
+        self.option3_line_edit = QLineEdit()
 
-        self.grid_layout = QGridLayout()
-        self.setLayout(self.form_layout)
-        self.button1.clicked.connect(self.button1_click)
-        self.button2.clicked.connect(self.button2_click)
+        self.publish_button = QPushButton('게시')
+        self.publish_button.clicked.connect(self.publish_form)
+        self.clear_button = QPushButton('초기화')
+        self.clear_button.clicked.connect(self.clear_form)
 
-        self.form_layout.addRow('질문:', self.line_edit1)
-        self.form_layout.addRow('선택지:', self.line_edit2)
-        self.form_layout.addRow('   ', self.line_edit3)
-        self.form_layout.addRow('   ', self.line_edit4)
-        self.form_layout.addRow(self.hbox)
+        self.publish_clear_hbox_layout = QHBoxLayout()
+        self.publish_clear_hbox_layout.addWidget(self.publish_button)
+        self.publish_clear_hbox_layout.addWidget(self.clear_button)
 
-        self.text_label = QLabel()
+        self.form_layout.addRow('질문: ', self.question_line_edit)
+        self.form_layout.addRow('선택지: ', self.option1_line_edit)
+        self.form_layout.addRow('', self.option2_line_edit)
+        self.form_layout.addRow('', self.option3_line_edit)
+        self.form_layout.addRow('', self.publish_clear_hbox_layout)
 
-        self.vbox_layout = QVBoxLayout()
-
-        self.vbox_layout.addWidget(self.text_label)
         self.setLayout(self.form_layout)
 
-        self.form_layout = QFormLayout()
-        self.line_edit = QLineEdit()
 
-        self.form_layout.addRow('텍스트', self.line_edit)
-
-    def button1_click(self):  # 게시
-        pass
-
-    def button2_click(self):  # 초기화
-        pass
-
-
-# ================================================================
-class GUI(QWidget):
+class CentralizedElectronicVotingSystem(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('중앙전자투표시스템')
+        self.setWindowTitle('중앙 전자 투표 시스템')
 
         self.tab1 = Tab1()
         self.tab2 = Tab2()
 
         self.tabs = QTabWidget()
         self.tabs.addTab(self.tab1, '투표')
-        self.tabs.addTab(self.tab2, '투표생성')
+        self.tabs.addTab(self.tab2, '투표 생성')
 
         self.vbox_layout = QVBoxLayout()
         self.vbox_layout.addWidget(self.tabs)
@@ -117,6 +112,14 @@ def exception_hook(except_type, value, traceback):
 if __name__ == '__main__':
     sys.excepthook = exception_hook
     app = QApplication(sys.argv)
-    gui = GUI()
-    gui.show()
+    cevs = CentralizedElectronicVotingSystem()
+    cevs.show()
     sys.exit(app.exec())
+
+
+def publish_form(self):
+    print('publish')
+
+
+def clear_form(self):
+    print('clear')

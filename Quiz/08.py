@@ -748,6 +748,7 @@ def exception_hook(except_type, value, traceback):
     exit(1)
 
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     sys.excepthook = exception_hook

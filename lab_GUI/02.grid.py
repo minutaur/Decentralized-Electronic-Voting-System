@@ -1,7 +1,5 @@
 from PyQt5.QtWidgets import *
 import sys
-
-
 class GUI(QWidget):
     def __init__(self):
         super().__init__()

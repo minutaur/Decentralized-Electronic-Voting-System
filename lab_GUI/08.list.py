@@ -17,9 +17,7 @@ class GUI(QWidget):
         self.hbox_layout = QHBoxLayout()
         self.hbox_layout.addWidget(self.text_lable)
         self.hbox_layout.addWidget(self.list)
-
         self.setLayout(self.hbox_layout)
-
     def select_item(self):
         item = self.list.currentItem()
         self.text_lable.setText(item.text())

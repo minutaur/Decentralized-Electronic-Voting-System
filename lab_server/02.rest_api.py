@@ -12,5 +12,4 @@ def f2():
     data = request.get_json()
     return jsonify(data)
 
-
 app.run()

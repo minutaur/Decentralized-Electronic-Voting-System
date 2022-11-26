@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import *
 import sys
 
-
 class GUI(QWidget):
     def __init__(self):
         super().__init__()
@@ -21,7 +20,6 @@ class GUI(QWidget):
         self.grid_layout.addWidget(self.button, 1, 0, 1, 1)
 
         self.setLayout(self.grid_layout)
-
     def button_click(self):
         self.value += 1
         self.progressbar.setValue(self.value)
